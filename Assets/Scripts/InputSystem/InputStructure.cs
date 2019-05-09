@@ -5,7 +5,7 @@ namespace InpuSystem
 {
     public class InputStructure
     {
-        public int direction;
-        public int frameCount;
+        public int direction=0;
+        public int frameCount=0;
     }
 }

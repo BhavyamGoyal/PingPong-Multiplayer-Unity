@@ -19,9 +19,16 @@ namespace Player
             spawnPoints.Add(GameObject.FindGameObjectWithTag("spawn1").GetComponent<Transform>());
             spawnPoints.Add(GameObject.FindGameObjectWithTag("spawn2").GetComponent<Transform>());
             ManagerLocator.Instance.GetMultiplayerManager().OnPlayerConnected += InitializePlayer;
+            ManagerLocator.Instance.GetMultiplayerManager().OnPadMoved += MovePlayer;
             ManagerLocator.Instance.GetMultiplayerManager().OnPlayerJoined += spawnPlayer;
         }
-
+        public void MovePlayer(UpdateData data)
+        {
+            foreach(string id in data.padData.Keys)
+            {
+                players[id].MovePad(data.padData[id]);
+            }
+        }
         ~PlayerManager()
         {
             ManagerLocator.Instance.GetMultiplayerManager().OnPlayerJoined -= spawnPlayer;

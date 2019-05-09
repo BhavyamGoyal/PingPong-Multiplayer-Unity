@@ -7,7 +7,7 @@ namespace Player
     {
         PlayerController controller;
         Rigidbody rb;
-        Vector3 moveingSpeed=new Vector3(0,0,10);
+        Vector3 moveingSpeed = new Vector3(0, 0, 10);
         // Start is called before the first frame update
         void Start()
         {
@@ -20,20 +20,17 @@ namespace Player
         }
         public void SetPlayerMaterial(Material playerMat)
         {
-            Debug.Log("Player spawn"+playerMat.name);
+            //Debug.Log("Player spawn"+playerMat.name);
             gameObject.GetComponentInChildren<Renderer>().material = playerMat;
-        }
-        public void SetSpeed(float speed)
-        {
-            moveingSpeed.z = moveingSpeed.z * speed;
         }
         public void SetController(PlayerController controller)
         {
             this.controller = controller;
         }
-        public void Move(int direction)
+        public void MovePad(PadData data)
         {
-            rb.velocity = direction*moveingSpeed;
+            Vector3 moveToPos = new Vector3(data.xPos, 0, data.yPos);
+            this.transform.position = moveToPos;
         }
     }
 }
